@@ -1,0 +1,42 @@
+import java.util.*;
+import java.lang.Math;
+public class Main{
+ public static int e1;// making global var
+ public static int e2;
+ public static int p;
+ public static int d;
+ public static int r;
+ public static int s1;
+ public static int s2;
+public static int pminus;
+public static int v1;
+public static int v2;
+ public static void main(String[]args){
+ int msg=320;
+ e1=2;
+ p=3119;
+ pminus=p-1;
+ d=127;
+ r=307;
+ algamlsender(msg,e1,p,d,r);
+ receiver(msg,e1,e2,p,s1,s2);
+ }
+ public static void algamlsender(int msg,int e1,int p, int d,int r){
+ //cal e2 
+ e2=((int)(Math.pow(e1,d)))%p;
+ s1=((int)(Math.pow(e1,r)))%p;
+ s2=(msg-(d*s1))*(int)(Math.pow(r,-1))%pminus;
+ } 
+ public static void receiver(int msg,int e1,int e2, int p,int s1,int s2){
+ 
+ v1=((int)(Math.pow(e1,msg)))%p;
+ v2=(((int)(Math.pow(e2,s1)))*(((int)(Math.pow(s1,s2)))))%p;
+ 
+ if(v1==v2){
+ System.out.println("message is from aunthicated source ");
+ }
+ else{
+ System.out.println("message is from unaunthicated source ");
+ }
+ }
+ }
